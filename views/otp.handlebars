@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jaxl Login</title>
+    <link rel="stylesheet" href="../public/style.css">
+    
+
+</head>
+
+<body>
+    <div class="main-otp">
+        <div class="main-otp-sub">
+            <div class="otpform">
+                <form method="POST" action="verify" class="form1">
+                    <div>
+                        <input class="emailfield1" type="text" name="otp" placeholder="Enter OTP of 6 digit" autocomplete="off"
+                            required="true">
+                    </div>
+                    <input class="btn" type="submit" name="signin" value="Verify OTP">
+                    <div>
+                        <h3>{{msg}}</h3>
+                    </div>
+                    <label for="html">Check in Terminal for new Otp  : </label>
+                    <input class="emailfield" id="filledInput" type="text" name="email" required="true" value={{email}}>
+            
+                </form>
+            </div>
+            
+            <div class="resend-form">
+                <input class="btn" type="submit" id="resendOTP" name="signin" value="Resend OTP">
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var emailInput = document.getElementById('filledInput').value;
+        var btn = document.getElementById('resendOTP');
+
+        btn.addEventListener('click', resentOtp);
+
+        async function resentOtp(e) {
+            e.preventDefault()
+            console.log(emailInput)
+            fetch("http://localhost:8000/resend", {
+                method: "POST",
+                body: JSON.stringify({
+                    email: emailInput
+                }),
+
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+
+        }
+
+    </script>
+
+</body>
+
+</html>
