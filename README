@@ -1,4 +1,7 @@
  
+ Assignment is running on PORT 8000
+ 
+ 
  Run these commond in terminal
  npm init -y
  npm install body-parser express express-handlebars node-localstorage nodemailer nodemon
